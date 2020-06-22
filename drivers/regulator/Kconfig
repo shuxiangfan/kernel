@@ -1208,6 +1208,16 @@ config REGULATOR_STUB
 	  when the real hardware based implementation may not be yet available.
 	  Clients can use the real regulator device names with proper
 	  constraint checking while the real driver is being developed.
+	  
+config REGULATOR_QCOM_LABIBB
+	tristate "QCOM LAB/IBB regulator support"
+	depends on SPMI || COMPILE_TEST
+	help
+	  This driver supports Qualcomm's LAB/IBB regulators present on the
+	  Qualcomm's PMIC chip pmi8998. QCOM LAB and IBB are SPMI
+	  based PMIC implementations. LAB can be used as positive
+	  boost regulator and IBB can be used as a negative boost regulator
+	  for LCD display panel.
 
 endif
 
