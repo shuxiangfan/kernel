@@ -516,10 +516,14 @@ static int spmi_regulator_vs_enable(struct regulator_dev *rdev)
 	return spmi_regulator_common_enable(rdev);
 }
 
-static int spmi_regulator_vs_ocp(struct regulator_dev *rdev)
+static int spmi_regulator_vs_ocp(struct regulator_dev *rdev, int lim_uA,
+				 int severity, bool enable)
 {
 	struct spmi_regulator *vreg = rdev_get_drvdata(rdev);
 	u8 reg = SPMI_VS_OCP_OVERRIDE;
+
+	if (lim_uA || !enable || severity != REGULATOR_SEVERITY_PROT)
+		return -EINVAL;
 
 	return spmi_vreg_write(vreg, SPMI_VS_REG_OCP, &reg, 1);
 }

@@ -142,6 +142,8 @@ static void of_get_regulation_constraints(struct device_node *np,
 	constraints->over_current_protection = of_property_read_bool(np,
 					"regulator-over-current-protection");
 
+	of_get_regulator_prot_limits(np, constraints);
+
 	for (i = 0; i < ARRAY_SIZE(regulator_states); i++) {
 		switch (i) {
 		case PM_SUSPEND_MEM:
