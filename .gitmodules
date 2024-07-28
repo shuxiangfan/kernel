@@ -1,0 +1,8 @@
+[submodule "techpack/audio"]
+	path = techpack/audio
+	url = https://github.com/sonyxperiadev/kernel-techpack-audio.git
+	branch = aosp/LA.UM.7.1.r1
+[submodule "techpack/data-kernel"]
+	path = techpack/data-kernel
+	url = git@github.com:sonyxperiadev/kernel-techpack-data-kernel.git
+	branch = aosp/LA.UM.7.1.r1
