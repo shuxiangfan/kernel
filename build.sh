@@ -5,4 +5,4 @@ args="-j$(nproc --all) \
 	CROSS_COMPILE=aarch64-linux-gnu- \
 	CROSS_COMPILE_ARM32=arm-linux-gnueabi- "
 	make ${args} aosp_yoshino_maple_defconfig
-	make ${args}
+	make ${args} -j16 CONFIG_DEBUG_SECTION_MISMATCH=y
