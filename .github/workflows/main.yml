@@ -8,14 +8,21 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-    - name: Initlization repo
+    - name: Initlization of repo
       run: |
         cd ~/
         git clone https://github.com/shuxiangfan/kernel.git kernel -b LABIBBregulatorsFIX --depth=1 
+    - name: Initlization of submoudles
+      run: |
+        cd ~/kernel/techpack/audio && git submodule init && git submodule update
+        cd ~/kernel/techpack/data-kernel && git submodule init && git submodule update
+        cd ~/kernel/drivers/staging/wlan-qc/qcacld-3.0 && git submodule init && git submodule update
+        cd ~/kernel/drivers/staging/wlan-qc/fw-api && git submodule init && git submodule update
+        cd ~/kernel/drivers/staging/wlan-qc/qca-wifi-host-cmn && git submodule init && git submodule update
     - name: Grab some dependencies
       run: |
-        sudo apt update && sudo apt -y dist-upgrade
-        sudo apt install -y gcc g++ make texinfo texlive bc bison build-essential ccache curl flex gnupg gperf imagemagick liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev unzip
+        sudo apt update
+        sudo apt install -y bc bison build-essential ccache curl flex gnupg gperf imagemagick liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev unzip
         sudo apt install -y gcc-arm-linux-gnueabi gcc-aarch64-linux-gnu
     - name: Build the kernel
       run: |
